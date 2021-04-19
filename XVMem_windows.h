@@ -10,9 +10,9 @@
 #define    ImportLib    __declspec( dllimport ) 
 #define    ExportLib    __declspec( dllexport )
 
-inline int Strncpy(TChar* destination, const TChar* name, int len) {
+inline int Strncpy(TCHAR* destination, const TCHAR* name, int len) {
 #pragma warning(suppress : 4996)
-    _tcsnlen(destination, name, len);
+    _tcsncpy(destination, name, len);
 }
 inline int Strnlen(const char* str, int maxlen) {
 #pragma warning(suppress : 4996)
