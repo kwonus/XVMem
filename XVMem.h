@@ -5,16 +5,16 @@
 #ifndef XVMem_HEADER
 #define XVMem_HEADER
 
-#include "XVMem_platform.h"
+#include <XVMem_platform.h>
 
-extern TCHAR  g_hSharedHome[MAX_PATH];
+extern char  g_hSharedHome[MAX_PATH];
 
 template <typename StructType> class XVMem
 {
 private:
     HANDLE m_hFileHandle;
     HANDLE m_hFileMapping;
-    TCHAR  m_hSharedName[MAX_PATH];
+    char  m_hSharedName[MAX_PATH];
     UINT32  m_dwMaxDataSize;
     StructType* m_pvData;
 
@@ -31,7 +31,7 @@ public:
     bool IsShared();
     void Release();
     bool Release(bool shared);
-    StructType* Acquire(TCHAR* name, bool writable, bool shared, UINT32 forceCnt = 0, StructType* bodyVal = NULL, StructType* firstVal = NULL, StructType* lastVal = NULL);
+    StructType* Acquire(char* name, bool writable, bool shared, UINT32 forceCnt = 0, StructType* bodyVal = NULL, StructType* firstVal = NULL, StructType* lastVal = NULL);
 
     StructType* GetData();
 };
@@ -111,17 +111,17 @@ template <typename StructType> void XVMem<StructType>::Release()
     }
 }
 
-template <typename StructType> StructType* XVMem<StructType>::Acquire(TCHAR* name, bool writable, bool shared, UINT32 forceCnt, StructType* bodyVal, StructType* firstVal, StructType* lastVal)
+template <typename StructType> StructType* XVMem<StructType>::Acquire(char* name, bool writable, bool shared, UINT32 forceCnt, StructType* bodyVal, StructType* firstVal, StructType* lastVal)
 {
     if (m_pvData)
         return m_pvData;
 
     m_bWritable = writable;
 
-    if (g_hSharedHome[0] == (TCHAR)0 || name == NULL || name[0] == (TCHAR) 0)
+    if (g_hSharedHome[0] == (char)0 || name == NULL || name[0] == (char) 0)
         return NULL;
 
-    TCHAR path[MAX_PATH];
+    char path[MAX_PATH];
     size_t len = Strnlen(g_hSharedHome, MAX_PATH-1);
     Strncpy(path, g_hSharedHome, MAX_PATH);
     Strncpy(path + len, name, MAX_PATH - len);
@@ -228,8 +228,7 @@ template <typename StructType> StructType* XVMem<StructType>::Acquire(TCHAR* nam
     }
     if (name != NULL)
     {
-#pragma warning(suppress : 4996)
-        _tcsncpy(m_hSharedName, name, MAX_PATH - 1);
+        Strncpy(m_hSharedName, name, MAX_PATH - 1);
     }
     else
     {

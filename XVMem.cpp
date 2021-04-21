@@ -1,3 +1,3 @@
 #include "XVMem.h"
 
-TCHAR  g_hSharedHome[MAX_PATH];
+char  g_hSharedHome[MAX_PATH];

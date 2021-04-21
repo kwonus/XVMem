@@ -21,10 +21,9 @@ typedef uint32_t UINT32;
 typedef uint16_t UINT16;
 typedef int* HANDLE;
 
-// TCHAR processing 
-typedef char TCHAR;
+// char processing 
 typedef wchar_t WCHAR; // Not fully used but still needed for some function prototypes 
-#define wcsncpy strncpy
+#define wcsncpy Strncpy
 
 #define    ExportLib 
 #define    ImportLib
