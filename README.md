@@ -1,6 +1,6 @@
 # XVMem
 This project is ispired by 'CSharedStruct':<br> > https://www.codeproject.com/Articles/1362/A-Simple-Wrapper-for-Sharing-Data-Structures-Betwe <br>
-My initial fork of that project was eventually called 'XSharedStruct'. Here's an early version of the cross-platform port: <br> > http://trustedsound.com/code/CSharedStruct.txt <br>
+My initial fork of that project was eventually called 'XSharedStruct'. Here's an early version of my cross-platform port: <br> > http://trustedsound.com/code/CSharedStruct.txt <br>
 
 Whereas CSharedStruct was windows-only, XSharedStruct was a cross-platform port (thus the X-prefix).  Still, XSharedStruct was a quick-and-dirty port to Linux and Mac. XVMem is a cleaner cross-platform implementation.  It still exposes a strong Windows bias; so it feels like you're using the WIN32/WIN64 API for shared/virtual memory and file IO.  Header files and cpp files map that API onto *nix (Linux and MacOS) shared/virtual memory and file IO.
 
