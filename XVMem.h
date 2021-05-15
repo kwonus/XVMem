@@ -128,7 +128,7 @@ template <typename StructType> StructType* XVMem<StructType>::Acquire(char* name
 
     if (writable && shared)
     {
-        m_hFileHandle = CreateFile(path
+        m_hFileHandle = CreateFileA(path
             , GENERIC_READ | GENERIC_WRITE
             , FILE_SHARE_READ | FILE_SHARE_WRITE
             , NULL
@@ -138,7 +138,7 @@ template <typename StructType> StructType* XVMem<StructType>::Acquire(char* name
 
         if (m_hFileHandle == INVALID_HANDLE_VALUE)
         {
-            m_hFileHandle = CreateFile(path
+            m_hFileHandle = CreateFileA(path
                 , GENERIC_READ | GENERIC_WRITE
                 , FILE_SHARE_READ | FILE_SHARE_WRITE
                 , NULL
@@ -190,7 +190,7 @@ template <typename StructType> StructType* XVMem<StructType>::Acquire(char* name
     }
     else if (name != NULL)
     {
-        m_hFileHandle = CreateFile(path
+        m_hFileHandle = CreateFileA(path
             , GENERIC_READ
             , FILE_SHARE_READ
             , NULL
