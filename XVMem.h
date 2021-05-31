@@ -31,7 +31,7 @@ public:
     bool IsShared();
     void Release();
     bool Release(bool shared);
-    StructType* Acquire(char* name, bool writable, bool shared, UINT32 forceCnt = 0, StructType* bodyVal = NULL, StructType* firstVal = NULL, StructType* lastVal = NULL);
+    StructType* Acquire(char* name, bool writable, bool shared, UINT32 forceCnt = 0, const StructType* bodyVal = NULL, const StructType* firstVal = NULL, const StructType* lastVal = NULL);
 
     StructType* GetData();
 };
@@ -111,7 +111,7 @@ template <typename StructType> void XVMem<StructType>::Release()
     }
 }
 
-template <typename StructType> StructType* XVMem<StructType>::Acquire(char* name, bool writable, bool shared, UINT32 forceCnt, StructType* bodyVal, StructType* firstVal, StructType* lastVal)
+template <typename StructType> StructType* XVMem<StructType>::Acquire(char* name, bool writable, bool shared, UINT32 forceCnt, const StructType* bodyVal, const StructType* firstVal, const StructType* lastVal)
 {
     if (m_pvData)
         return m_pvData;
@@ -236,15 +236,10 @@ template <typename StructType> StructType* XVMem<StructType>::Acquire(char* name
     }
     if ((m_pvData == NULL) || !shared)
     {
-        if (m_hFileMapping)
+        if (m_hFileMapping && m_hFileHandle != INVALID_HANDLE_VALUE)
         {
             CloseHandle(m_hFileMapping);
             m_hFileMapping = NULL;
-        }
-        if (m_hFileHandle != INVALID_HANDLE_VALUE)
-        {
-            CloseHandle(m_hFileHandle);
-            m_hFileHandle = INVALID_HANDLE_VALUE;
         }
         if (shared)
             return NULL;
