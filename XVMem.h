@@ -124,7 +124,7 @@ template <typename StructType> StructType* XVMem<StructType>::Acquire(char* name
     char path[MAX_PATH];
     size_t len = Strnlen(g_hSharedHome, MAX_PATH-1);
     Strncpy(path, g_hSharedHome, MAX_PATH);
-    Strncpy(path + len, name, MAX_PATH - len);
+    Strncpy(path + len, name, int(MAX_PATH - len));
 
     if (writable && shared)
     {
