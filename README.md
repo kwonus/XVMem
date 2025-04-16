@@ -6,6 +6,6 @@ Whereas CSharedStruct was windows-only, XSharedStruct was a cross-platform port 
 
 This project was initially used by AVXLib (in my public github account), with example usages in AVXTest (also in my public github account).  XVMem is primarilly intended as a virtual memory backing store for large files.  By design, it supports read/write, albeit without semaphores (I say, "by design", because my current usage of this library is read-only). With no semephores, avoiding race conditions is left up to the consumer of the lib (when it is not used in read-only mode). XVMem also supports mallocing the ram instead of utilizing shared memory, for use-cases where memory usage is only in-process.
 
-There's probably more feature-rich libaries that serve similiar purposes, but this one is lean, familiar to me, and introduces zero additional dependencies.  I'm sharing it in case anyone has similiar requirements.  XVMem is currently slated for utilization in the new AVXSearch library found at https://github.com/AV-Text/AVX
+There's probably more feature-rich libaries that serve similiar purposes, but this one is lean, familiar to me, and introduces zero additional dependencies.  I'm sharing it in case anyone has similiar requirements.  XVMem is utized in av-foundations of the AV-Native-SDK, found at https://github.com/kwonus/AV-Native-SDK
 
 License is MIT.
